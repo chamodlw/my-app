@@ -14,8 +14,8 @@ export default function Head() {
           <Tab label ="About us"/>
           <Tab label ="Contact us"/>
         </Tabs>
-        <Button sx={{ marginLeft: 'auto' }} variant="contained">Login</Button>
-        <Button sx={{ marginLeft: '10px', marginRight:'10px'}} variant="contained">Signup</Button>
+        <Button sx={{ marginLeft: 'auto', background:'#101754'}} variant="contained">Login</Button>
+        <Button sx={{ marginLeft: '10px', marginRight:'10px' , background:'#101754'}} variant="contained">Signup</Button>
       </Typography>
         
     </AppBar>
