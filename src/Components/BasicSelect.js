@@ -5,6 +5,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 
 
 export default function BasicSelect() {
@@ -15,7 +16,7 @@ export default function BasicSelect() {
   };
 
   return (
-    <Box sx={{ width: '80%', margin: '0 auto', backgroundColor: '#D9D9D9', padding: '20px' ,borderRadius: '8px'}}>
+    <Box sx={{ width: '80%', margin: 'auto', backgroundColor: '#D9D9D9', padding: '20px' ,borderRadius: '8px'}}>
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label" sx={{color:'#101754'}}>Blood Test Type</InputLabel>
         <Select
@@ -40,7 +41,12 @@ export default function BasicSelect() {
            
         </Typography>
       )}
-      
+      <Box sx={{ marginLeft: 'auto', marginTop: '10px' }}>
+        {/* Add your button component here */}
+        <Button sx={{variant:'contained' ,color:'#FFFFFF', background:'#101754'}}>
+          CONFIRM
+        </Button>
+      </Box>
       
     </Box>
   );
