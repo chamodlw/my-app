@@ -1,11 +1,17 @@
 import './App.css';
+import { BrowserRouter, Routes,Route, Switch } from 'react-router-dom';
+import Head from './Components/Head';
 import Selecttest from './Selecttest';
 
 function App() {
   return (
-    <div className="App">
-      <Selecttest/>
-    </div>
+    <BrowserRouter>
+    <Routes>
+      <Route path='/Head' element={<Head/>}/>
+      <Route path='/Selecttest' element={<Selecttest/>}/>
+
+    </Routes>
+  </BrowserRouter>
   );
 }
 
