@@ -18,7 +18,7 @@ export default function BasicSelect() {
   return (
     <Box sx={{ width: '80%', margin: 'auto', backgroundColor: '#D9D9D9', padding: '20px' ,borderRadius: '8px'}}>
       <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label" sx={{color:'#101754'}}>Blood Test Type</InputLabel>
+        <InputLabel id="demo-simple-select-label" sx={{color:'#101754'}}>Report ID</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
@@ -28,9 +28,7 @@ export default function BasicSelect() {
           sx={{ backgroundColor: '#FFFFFF' }}
 
         >
-          <MenuItem value={'Sugar test : more  details.........'}>001-Sugar test</MenuItem>
-          <MenuItem value={'Glucourse test : more details.........'}>002-Glucourse test</MenuItem>
-          <MenuItem value={'Calcium test : more details.........'}>003-Calcium test</MenuItem>
+          
         </Select>
       </FormControl>
       
@@ -44,7 +42,10 @@ export default function BasicSelect() {
       <Box sx={{ marginLeft: 'auto', marginTop: '10px' }}>
         {/* Add your button component here */}
         <Button sx={{variant:'contained' ,color:'#FFFFFF', background:'#101754'}}>
-          CONFIRM
+          Approve
+        </Button>&nbsp;
+        <Button sx={{variant:'contained' ,color:'#FFFFFF', background:'#101754'}}>
+          Recommend to recheck
         </Button>
       </Box>
       
