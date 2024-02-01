@@ -6,7 +6,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-
+import Dapproval02 from './Dapproval02';
 
 export default function BasicSelect() {
   const [test, setTest] = React.useState('');
@@ -17,6 +17,7 @@ export default function BasicSelect() {
 
   return (
     <Box sx={{ width: '80%', margin: 'auto', backgroundColor: '#D9D9D9', padding: '20px' ,borderRadius: '8px'}}>
+      <Dapproval02/>
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label" sx={{color:'#101754'}}>Report ID</InputLabel>
         <Select
@@ -47,8 +48,11 @@ export default function BasicSelect() {
         <Button sx={{variant:'contained' ,color:'#FFFFFF', background:'#101754'}}>
           Recommend to recheck
         </Button>
+        
       </Box>
       
     </Box>
+    
   );
+  
 }
