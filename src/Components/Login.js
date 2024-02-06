@@ -117,7 +117,7 @@ function Login() {
           </div>
 
           <div className="form-group">
-            {/* Aditional labels or form elements can be added here */}
+            {/* Additional labels or form elements can be added here */}
           </div>
 
           <Button
