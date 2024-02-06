@@ -1,6 +1,6 @@
 import Patienthead from './Components/Patienthead';
-import Dapproval01 from './Dapproval01';
-import Dapproval03 from './Dapproval03';
+import Dapproval01 from './Dapproval/Dapproval01';
+import Dapproval03 from './Dapproval/Dapproval03';
 import './maincss/Selecttest.css'
 
 import Footer from './Components/Footer';

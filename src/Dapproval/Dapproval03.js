@@ -12,10 +12,12 @@ export default function FixedContainer() {
         <Box sx={{  width: '80%', margin: 'auto', backgroundColor: '#D9D9D9', padding: '20px' ,borderRadius: '8px',height:'50vh'}} >
             <h1>Recommendations</h1>
             <hr></hr>
-            <TextField
-         Report ID
+            <br></br><br></br>
+            <TextField sx={{width:'100%',height:'40px'}}
+         Recommendations
           id="outlined-required"
-          label="Report Id"
+          label="Recommendations"
+          defaultValue="Need to ...."
         />
             </Box>
      
