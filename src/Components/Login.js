@@ -38,17 +38,27 @@ function Login() {
             marginLeft: "50px", 
           }}
         >
+
+          
+<img
+          src={photo1} // Use the imported image
+          // alt="My Photo"
+          style={{ width: "100%", maxWidth: "300px", marginTop: "10px", marginLeft: "100px"}}
+        />
+
           <h2
             style={{
-              marginBottom: "5%",
+              marginBottom: "7%",
               color: "#0085FF",
               fontWeight: "bold",
+              
             }}
           >
+
             Login
           </h2>
 
-          <div className="form-group">
+          <div className="form-group"  style={{ marginBottom: "25px" }}>
             <label className="labels" htmlFor="username">
               Username
             </label>
@@ -68,13 +78,14 @@ function Login() {
             </div>
           </div>
 
-          <div className="form-group">
+
+          <div className="form-group"  style={{ marginBottom: "25px" }}>
             <label className="labels" htmlFor="password">
               Password
             </label>
             <div className="custom_input">
               <input
-                style={{
+                style={{  
                   width: "350px",
                   height: "25px",
                   borderRadius: "5px",
@@ -88,7 +99,7 @@ function Login() {
             </div>
           </div>
 
-          <div className="form-group">
+          <div className="form-group"  style={{ marginBottom: "20px" }}>
             <label
               className="labels"
               htmlFor="space"
