@@ -1,11 +1,12 @@
 //AdminInterface.js
 import Patienthead from '../Components/Patienthead';
 import Footer from '../Components/Footer';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Grid } from '@mui/material';
 import '../maincss/AdminInterface.css';
 
 function AdminInterface() {
+  const Navigate=useNavigate()
     return (
       <div className="AdminInterface">
         <Patienthead/><br/><br/><br/><br/><br/>
@@ -19,10 +20,10 @@ function AdminInterface() {
     height: '70vh', // Added to align buttons to the middle of the page
   }}
 >
-<button
+<button 
 
   className="AdminButton1"
-  onClick={() => Navigate('./AddTest')}
+  onClick={() => Navigate('../AddTest')}
   sx={{}}
 >
   Add New Test
@@ -35,7 +36,6 @@ function AdminInterface() {
     View Test List
   </button>
 </Grid>
-
 
         <Footer/>
       </div>

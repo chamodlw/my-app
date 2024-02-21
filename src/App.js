@@ -8,9 +8,9 @@ function App() {
   return (
     <BrowserRouter>
     <Routes>
-      <Route path='../Admin/AdminInterface' element={<AdminInterface/>}/>
-      <Route path='/Selecttest' element={<Selecttest/>}/>
-      <Route path='./Admin/AddTest' element={<AddTest/>}/>
+      <Route path='AdminInterface' element={<AdminInterface/>}/>
+      <Route path='Selecttest' element={<Selecttest/>}/>
+      <Route path='AddTest' element={<AddTest/>}/>
     </Routes>
   </BrowserRouter>
   );
