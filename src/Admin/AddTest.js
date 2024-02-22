@@ -4,8 +4,15 @@ import Footer from '../Components/Footer';
 import '../maincss/AddTest.css';
 import { Button, Grid } from '@mui/material';
 import BasicTextFields from '../Components/Entersection';
+import Axios from "axios";
+import { useState } from 'react';
 
 function AddTest() {
+  const [tests,setTests] =useState([]);
+
+  const getTests =() => {
+    
+  }
     return (
       <div className="AddTest">
         <Patienthead/><br/><br/><br/><br/><br/>
