@@ -1,3 +1,4 @@
+//SelectTable.js
 import React from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -11,13 +12,15 @@ const SelectTable = ({ tests }) => {
   return (
     <TableContainer component={Paper} sx={{ marginTop: '20px' }}>
       <Table aria-label="simple table" sx={{ minWidth: 650 }}>
-        <TableHead>
-          <TableRow>
-            <TableCell>ID</TableCell>
-            <TableCell>Name</TableCell>
-            <TableCell>Description</TableCell>
-          </TableRow>
-        </TableHead>
+      <TableHead sx={{ backgroundColor: '#101754'}}>
+  <TableRow>
+    <TableCell sx={{  color: '#FFFFFF' }}>ID</TableCell>
+    <TableCell sx={{  color: '#FFFFFF' }}>Name</TableCell>
+    <TableCell sx={{  color: '#FFFFFF' }}>Description</TableCell>
+  </TableRow>
+</TableHead>
+
+
         <TableBody>
           {tests.map((test) => (
             <TableRow key={test.id}>
@@ -32,4 +35,6 @@ const SelectTable = ({ tests }) => {
   );
 };
 
+
 export default SelectTable;
+
