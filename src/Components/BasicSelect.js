@@ -28,7 +28,7 @@ export default function BasicSelect() {
           sx={{ backgroundColor: '#FFFFFF' }}
 
         >
-          <MenuItem value={'Sugar test : more details.........'}>001-Sugar test</MenuItem>
+          <MenuItem value={'Sugar test : more  details.........'}>001-Sugar test</MenuItem>
           <MenuItem value={'Glucourse test : more details.........'}>002-Glucourse test</MenuItem>
           <MenuItem value={'Calcium test : more details.........'}>003-Calcium test</MenuItem>
         </Select>
