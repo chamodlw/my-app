@@ -1,6 +1,6 @@
 import Patienthead from './Components/Patienthead';
 import BasicSelect from './Components/BasicSelect';
-import './maincss/Selecttest.css'
+import './maincss/Selecttest.css';
 import BackToTop from './Components/Scroll';
 import Footer from './Components/Footer';
 import Date from './Components/Date';

@@ -5,6 +5,9 @@ import HomePage from './Components/HomePage';
 
 import Signin from "./Components/Signin"
 import Login from "./Components/Login"
+import Selecttest from './Selecttest';
+import AddTest from './Admin/AddTest';
+import AdminInterface from './Admin/AdminInterface';
 
 function App() {
   return (
@@ -12,7 +15,10 @@ function App() {
     {/* <Signin></Signin> */}
     <BrowserRouter>
     <Routes>
-      <Route path='/Head' element={<Head/>}/>
+      <Route path='AdminInterface' element={<AdminInterface/>}/>
+      <Route path='Selecttest' element={<Selecttest/>}/>
+      <Route path='AddTest' element={<AddTest/>}/>
+       <Route path='/Head' element={<Head/>}/>
       <Route path='/Login' element={<Login/>}/>
       <Route path='/Signin' element={<Signin/>}/>
       <Route path='/HomePage' element={<HomePage/>}/>
