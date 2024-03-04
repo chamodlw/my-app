@@ -9,6 +9,9 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Axios from 'axios';
 import SelectTable from './SelectTable';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+
 
 function BasicSelect() {
   
@@ -17,6 +20,9 @@ function BasicSelect() {
   const [selectedTestsForTable, setSelectedTestsForTable] = useState([]); // New state to track selected tests for table
   const [selectedTestDescription, setSelectedTestDescription] = useState('');
   const [testDetails, setTestDetails] = useState('');
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
+
 
   useEffect(() => {
     getTests();
@@ -53,8 +59,9 @@ function BasicSelect() {
           });
       }
     } else {
-      // If the test is already selected, you can handle this case as needed.
-      console.log('Test is already selected');
+      // Set the Snackbar message and open Snackbar
+      setSnackbarMessage('Test is already selected');
+      setSnackbarOpen(true);
     }
   };
 
@@ -71,6 +78,11 @@ function BasicSelect() {
       // Sort selectedTestsForTable by ID in ascending order
       setSelectedTestsForTable(prevSelectedTests => prevSelectedTests.sort((a, b) => a.id - b.id));
     }
+  };
+
+  const handleCloseSnackbar = () => {
+    // Close Snackbar
+    setSnackbarOpen(false);
   };
   
   
@@ -113,6 +125,23 @@ function BasicSelect() {
         <Button sx={{ variant: 'contained', color: '#FFFFFF', background: '#101754' }} onClick={handleConfirm}>
           SELECT
         </Button>
+          <Snackbar  
+            open={snackbarOpen} 
+            autoHideDuration={4000} 
+            onClose={handleCloseSnackbar} 
+            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+          >
+            <MuiAlert
+        onClose={handleCloseSnackbar}
+        severity="warning"
+        sx={{
+            width: '100%',backgroundColor: '#000000',color: 'white','& .MuiAlert-icon': {color: 'white',}
+            }}
+            >
+              {snackbarMessage}
+            </MuiAlert>
+          </Snackbar>
+
       </Box>
 
       {/* Displaying selected tests in a table */}
@@ -120,7 +149,7 @@ function BasicSelect() {
 
       <Box sx={{ marginLeft: 'auto', marginTop: '10px' }}>
         {selectedTestsForTable.length > 0 && (
-          <Button sx={{ variant: 'contained', color: '#FFFFFF', background: '#101754' }} onClick={handleConfirm}>
+          <Button sx={{ variant: 'contained', color: '#FFFFFF', background: '#101754' }} onClick={''}>
             CONFIRM
           </Button>
         )}

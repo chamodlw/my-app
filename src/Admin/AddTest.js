@@ -77,7 +77,7 @@ function AddTest() {
         </Button>
         <Snackbar
           open={openSnackbar} // Set open state of the Snackbar
-          autoHideDuration={6000} // Duration for the Snackbar to auto close
+          autoHideDuration={4000} // Duration for the Snackbar to auto close
           onClose={handleCloseSnackbar} // Function to handle closing the Snackbar
           message="Test added successfully!" // Message to be displayed
           anchorOrigin={{ vertical: 'top', horizontal: 'right' }} // Position of the Snackbar
