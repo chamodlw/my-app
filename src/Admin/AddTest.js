@@ -1,6 +1,5 @@
-//AddTest.js
-import React, { useState } from 'react';
-import { Button, Grid, Snackbar } from '@mui/material'; // Import Snackbar from MUI
+import React, { useState, useEffect } from 'react';
+import { Button, Grid, Snackbar } from '@mui/material';
 import EnterSection from '../Components/Entersection';
 import Patienthead from '../Components/Patienthead';
 import Footer from '../Components/Footer';
@@ -12,7 +11,31 @@ function AddTest() {
     name: '',
     description: '',
   });
-  const [openSnackbar, setOpenSnackbar] = useState(false); // State variable for Snackbar
+
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
+  const [maxId, setMaxId] = useState(0);
+
+  useEffect(() => {
+    fetchMaxId();
+  }, []);
+
+  const fetchMaxId = () => {
+    fetch('http://localhost:3100/api/tests')
+      .then((response) => response.json())
+      .then((data) => {
+        if (data && data.length > 0) {
+          const maxTestId = Math.max(...data.map((test) => test.id));
+          setMaxId(maxTestId + 1); // Add 1 to the maximum test ID
+        } else {
+          setMaxId(0); // If no tests in database, set maxId to 1
+        }
+      })
+      .catch((error) => {
+        console.error('Error fetching maximum test ID:', error);
+      });
+  };
+  
 
   const handleChange = (name, value) => {
     setFormData((prevData) => ({
@@ -22,25 +45,26 @@ function AddTest() {
   };
 
   const handleAddTest = () => {
-    // You can perform any necessary validation here before sending the data
-    // to the backend API for adding the test
+    const nextId = maxId + 1;
+
     fetch('http://localhost:3100/api/addtest', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify({ ...formData, id: nextId }),
     })
       .then((response) => response.json())
       .then((data) => {
         console.log('Add Test Response:', data);
-        // Optionally, you can reset the form after successful addition
         setFormData({
           id: '',
           name: '',
           description: '',
         });
-        setOpenSnackbar(true); // Open the Snackbar upon successful addition
+        setMaxId(nextId); // Update maxId with the newly added test ID
+        setSnackbarMessage('Test added successfully!');
+        setOpenSnackbar(true);
       })
       .catch((error) => {
         console.error('Error adding test:', error);
@@ -48,7 +72,7 @@ function AddTest() {
   };
 
   const handleCloseSnackbar = () => {
-    setOpenSnackbar(false); // Close the Snackbar
+    setOpenSnackbar(false);
   };
 
   return (
@@ -60,7 +84,7 @@ function AddTest() {
       <br />
       <br />
       <Grid sx={{ align: 'center' }}>
-        <EnterSection handleChange={handleChange} formData={formData} />
+        <EnterSection handleChange={handleChange} formData={formData} maxId={maxId} />
         <Button
           onClick={handleAddTest}
           sx={{
@@ -76,11 +100,11 @@ function AddTest() {
           ADD
         </Button>
         <Snackbar
-          open={openSnackbar} // Set open state of the Snackbar
-          autoHideDuration={4000} // Duration for the Snackbar to auto close
-          onClose={handleCloseSnackbar} // Function to handle closing the Snackbar
-          message="Test added successfully!" // Message to be displayed
-          anchorOrigin={{ vertical: 'top', horizontal: 'right' }} // Position of the Snackbar
+          open={openSnackbar}
+          autoHideDuration={4000}
+          onClose={handleCloseSnackbar}
+          message={snackbarMessage}
+          anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
         />
       </Grid>
       <Footer />

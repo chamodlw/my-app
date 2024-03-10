@@ -2,12 +2,15 @@ import './App.css';
 import { BrowserRouter, Routes, Route, Switch } from 'react-router-dom';
 import Head from './Components/Head';
 import HomePage from './Components/HomePage';
-
 import Signin from "./Components/Signin"
 import Login from "./Components/Login"
 import Selecttest from './Selecttest';
 import AddTest from './Admin/AddTest';
 import AdminInterface from './Admin/AdminInterface';
+import Dhome from './Dhome';
+import Dapproval from './Dapproval';
+import Contact from './Contact';
+
 
 function App() {
   return (
@@ -15,6 +18,9 @@ function App() {
     {/* <Signin></Signin> */}
     <BrowserRouter>
     <Routes>
+    <Route path='Dhome' element={<Dhome/>}/>
+      <Route path='Dapproval' element={<Dapproval/>}/>
+      <Route path='Contact' element={<Contact/>}/>
       <Route path='AdminInterface' element={<AdminInterface/>}/>
       <Route path='Selecttest' element={<Selecttest/>}/>
       <Route path='AddTest' element={<AddTest/>}/>

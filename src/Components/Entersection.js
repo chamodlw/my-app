@@ -1,10 +1,9 @@
-//EnterSection.js
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
-export default function EnterSection({ handleChange, formData }) {
-  const { id, name, description } = formData;
+export default function EnterSection({ handleChange, formData, maxId }) {
+  const { name, description } = formData;
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -21,9 +20,9 @@ export default function EnterSection({ handleChange, formData }) {
         flexDirection: 'column',
         alignItems: 'center',
         '& > :not(style)': { m: 1, width: '70%' },
-        margin: 'auto', // Aligning center horizontally
-        borderRadius: '10px', // Adding rounded corners
-        padding: '20px', // Adding some padding for better aesthetics
+        margin: 'auto',
+        borderRadius: '10px',
+        padding: '20px',
       }}
       noValidate
       autoComplete="off"
@@ -31,10 +30,12 @@ export default function EnterSection({ handleChange, formData }) {
       <TextField
         id="id"
         name="id"
-        label="id"
+        label="ID"
         variant="outlined"
-        value={id}
-        onChange={handleInputChange}
+        value={maxId + 1}
+        InputProps={{
+          readOnly: true,
+        }}
       />
       <TextField
         id="name"

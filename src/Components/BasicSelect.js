@@ -103,7 +103,7 @@ function BasicSelect() {
         >
           {tests.map((test) => (
             <MenuItem key={test.id} value={test.id}>
-              {test.name}
+              {test.id + ' ' + test.name}
             </MenuItem>
           ))}
         </Select>
@@ -156,7 +156,7 @@ function BasicSelect() {
       </Box>
 
 
-    </Box>
+      </Box>
   );
 }
 
