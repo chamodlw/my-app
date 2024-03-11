@@ -1,92 +1,82 @@
-import React, { useState, useEffect } from 'react';
-import { Button, Grid, Snackbar } from '@mui/material';
-import EnterSection from '../Components/Entersection';
-import Patienthead from '../Components/Patienthead';
-import Footer from '../Components/Footer';
-import '../maincss/AddTest.css';
+// AddTest.js
+// Import necessary dependencies and components
+import React, { useState } from 'react';
+import Patienthead from '../Components/Patienthead'; // Importing header component
+import Footer from '../Components/Footer'; // Importing footer component
+import '../maincss/AddTest.css'; // Importing CSS file for styling
+import { Button, Grid, Snackbar } from '@mui/material'; // Importing Button and Grid components from Material-UI
+import BasicTextFields from '../Components/Entersection'; // Importing custom text field component
 
 function AddTest() {
+  // State to manage form data
   const [formData, setFormData] = useState({
     id: '',
     name: '',
-    description: '',
+    description: ''
   });
 
-  const [openSnackbar, setOpenSnackbar] = useState(false);
+  // State to manage Snackbar
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
-  const [maxId, setMaxId] = useState(0);
 
-  useEffect(() => {
-    fetchMaxId();
-  }, []);
-
-  const fetchMaxId = () => {
-    fetch('http://localhost:3100/api/tests')
-      .then((response) => response.json())
-      .then((data) => {
-        if (data && data.length > 0) {
-          const maxTestId = Math.max(...data.map((test) => test.id));
-          setMaxId(maxTestId + 1); // Add 1 to the maximum test ID
-        } else {
-          setMaxId(0); // If no tests in database, set maxId to 1
-        }
-      })
-      .catch((error) => {
-        console.error('Error fetching maximum test ID:', error);
-      });
-  };
-  
-
-  const handleChange = (name, value) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+  // Function to handle changes in form inputs
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
-  const handleAddTest = () => {
-    const nextId = maxId + 1;
-
+  // Function to handle form submission
+  const handleSubmit = () => {
+    if (!formData.id || !formData.name || !formData.description) {
+      // If any of the fields are empty, return
+      
+      // Show fail Snackbar
+      setSnackbarMessage('Failed to add test');
+      setSnackbarOpen(true);
+      return;
+    }
     fetch('http://localhost:3100/api/addtest', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ ...formData, id: nextId }),
+      body: JSON.stringify(formData)
     })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log('Add Test Response:', data);
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+        // Reset form data if needed
         setFormData({
           id: '',
           name: '',
-          description: '',
+          description: ''
         });
-        setMaxId(nextId); // Update maxId with the newly added test ID
-        setSnackbarMessage('Test added successfully!');
-        setOpenSnackbar(true);
-      })
+      
+      // Show success Snackbar
+      setSnackbarMessage('Test added successfully');
+      setSnackbarOpen(true);
+    })
       .catch((error) => {
-        console.error('Error adding test:', error);
+        console.error('Error:', error);
+
+       // Show error Snackbar
+      setSnackbarMessage('Error adding test');
+      setSnackbarOpen(true);
       });
   };
-
+  // Function to close the Snackbar
   const handleCloseSnackbar = () => {
-    setOpenSnackbar(false);
+    setSnackbarOpen(false);
   };
-
   return (
     <div className="AddTest">
-      <Patienthead />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
+      {/* Header component */}
+      <Patienthead /><br /><br /><br /><br /><br />
       <Grid sx={{ align: 'center' }}>
-        <EnterSection handleChange={handleChange} formData={formData} maxId={maxId} />
+        {/* Custom text field component */}
+        <BasicTextFields handleChange={handleChange} formData={formData} />
+        {/* Button for form submission */}
         <Button
-          onClick={handleAddTest}
+          onClick={handleSubmit}
           sx={{
             variant: 'contained',
             color: '#FFFFFF',
@@ -95,21 +85,26 @@ function AddTest() {
             margin: 'auto',
             marginBottom: '40px',
             marginTop: '20px',
-          }}
-        >
+          }}>
           ADD
         </Button>
-        <Snackbar
-          open={openSnackbar}
-          autoHideDuration={4000}
-          onClose={handleCloseSnackbar}
-          message={snackbarMessage}
-          anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-        />
       </Grid>
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={4000}
+        onClose={handleCloseSnackbar}
+        message={snackbarMessage}
+        action={
+          <Button sx={{color:"#101754"}} size="small" onClick={handleCloseSnackbar}>
+            CLOSE
+          </Button>
+        }
+      />
+      {/* Footer component */}
       <Footer />
     </div>
   );
 }
 
 export default AddTest;
+
