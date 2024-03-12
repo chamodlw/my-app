@@ -34,6 +34,18 @@ function AddTest() {
       setSnackbarOpen(true);
       return;
     }
+
+    if (!(Number.isInteger(parseInt(formData.id, 10)))) {
+      console.log('not int');
+      console.log(formData.id);
+      // Show error Snackbar
+      setSnackbarMessage('ID must be an integer');
+      setSnackbarOpen(true);
+      return;
+    }
+    
+  
+
     fetch('http://localhost:3100/api/addtest', {
       method: 'POST',
       headers: {
@@ -99,6 +111,10 @@ function AddTest() {
             CLOSE
           </Button>
         }
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'right'
+        }}
       />
       {/* Footer component */}
       <Footer />

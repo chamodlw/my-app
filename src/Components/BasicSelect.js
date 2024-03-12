@@ -17,10 +17,12 @@ function BasicSelect() {
   const [selectedTestsForTable, setSelectedTestsForTable] = useState([]); // New state to track selected tests for table
   const [selectedTestDescription, setSelectedTestDescription] = useState('');
   const [testDetails, setTestDetails] = useState('');
+  
 
   useEffect(() => {
     getTests();
   }, []);
+
 
   const getTests = () => {
     Axios.get('http://localhost:3100/api/tests')
@@ -71,8 +73,42 @@ function BasicSelect() {
       // Sort selectedTestsForTable by ID in ascending order
       setSelectedTestsForTable(prevSelectedTests => prevSelectedTests.sort((a, b) => a.id - b.id));
     }
+    
   };
   
+  const handleFinal = () => {
+  // Extracting selected test IDs from selectedTestsForTable array
+  const selectTestIds = selectedTestsForTable.map(test => test.id);
+  // Extracting selected test names from selectedTestsForTable array
+  const selectTestNames = selectedTestsForTable.map(test => test.name);
+  
+  // Create a new appointment object
+  const newAppointment = {
+    id: Math.floor(Math.random() * 1000), // Generate a random integer ID for the appointment
+    // You can add more properties to the appointment object as needed
+    selectTestIds: selectTestIds,
+    selectTestNames: selectTestNames // Include selected test names in the appointment object
+  };
+
+  // Send the new appointment data to the server
+  fetch('http://localhost:3100/api/addappointment', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(newAppointment) // Pass the new appointment object as JSON data
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('Success:', data);
+    // You can handle success response as needed
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    // You can handle errors as needed
+  });
+};
+
   
 
   return (
@@ -120,7 +156,7 @@ function BasicSelect() {
 
       <Box sx={{ marginLeft: 'auto', marginTop: '10px' }}>
         {selectedTestsForTable.length > 0 && (
-          <Button sx={{ variant: 'contained', color: '#FFFFFF', background: '#101754' }} onClick={handleConfirm}>
+          <Button sx={{ variant: 'contained', color: '#FFFFFF', background: '#101754' }} onClick={handleFinal}>
             CONFIRM
           </Button>
         )}
