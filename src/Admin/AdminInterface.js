@@ -30,7 +30,7 @@ function AdminInterface() {
         </Button>
         <Button
           className="AdminButton2"
-          onClick={() => Navigate('')}
+          onClick={() => Navigate('../ViewTest')}
           sx={{ color: '#FFFFFF', backgroundColor: '#101754' }}
           variant="contained"
         >

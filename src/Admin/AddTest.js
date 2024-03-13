@@ -107,7 +107,7 @@ function AddTest() {
         onClose={handleCloseSnackbar}
         message={snackbarMessage}
         action={
-          <Button sx={{color:"#101754"}} size="small" onClick={handleCloseSnackbar}>
+          <Button sx={{color:"#ffffff"}} size="small" onClick={handleCloseSnackbar}>
             CLOSE
           </Button>
         }

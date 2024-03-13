@@ -9,6 +9,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Axios from 'axios';
 import SelectTable from './SelectTable';
+import { Snackbar } from '@mui/material';
 
 function BasicSelect() {
   
@@ -17,12 +18,18 @@ function BasicSelect() {
   const [selectedTestsForTable, setSelectedTestsForTable] = useState([]); // New state to track selected tests for table
   const [selectedTestDescription, setSelectedTestDescription] = useState('');
   const [testDetails, setTestDetails] = useState('');
-  
+    // State to manage Snackbar
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
 
   useEffect(() => {
     getTests();
   }, []);
 
+  // Function to close the Snackbar
+  const handleCloseSnackbar = () => {
+        setSnackbarOpen(false);
+  }
 
   const getTests = () => {
     Axios.get('http://localhost:3100/api/tests')
@@ -89,7 +96,12 @@ function BasicSelect() {
     selectTestIds: selectTestIds,
     selectTestNames: selectTestNames // Include selected test names in the appointment object
   };
+  
+  // Show success Snackbar
+  setSnackbarMessage('Appointment added successfully');
+  setSnackbarOpen(true);
 
+  
   // Send the new appointment data to the server
   fetch('http://localhost:3100/api/addappointment', {
     method: 'POST',
@@ -98,6 +110,7 @@ function BasicSelect() {
     },
     body: JSON.stringify(newAppointment) // Pass the new appointment object as JSON data
   })
+  
   .then(response => response.json())
   .then(data => {
     console.log('Success:', data);
@@ -158,7 +171,24 @@ function BasicSelect() {
         {selectedTestsForTable.length > 0 && (
           <Button sx={{ variant: 'contained', color: '#FFFFFF', background: '#101754' }} onClick={handleFinal}>
             CONFIRM
+            <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={4000}
+        onClose={handleCloseSnackbar}
+        message={snackbarMessage}
+        action={
+          <Button sx={{color:"#ffffff"}} size="small" onClick={handleCloseSnackbar}>
+            CLOSE
           </Button>
+        }
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'right'
+        }}
+      />
+          </Button>
+          
+          
         )}
       </Box>
 
